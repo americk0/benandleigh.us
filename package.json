@@ -1,0 +1,16 @@
+{
+  "name": "benandleigh.us",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "google-auth-library": "^0.11.0",
+    "googleapis": "^21.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Watson <ben.watson.developer@gmail.com>",
+  "license": "ISC"
+}
