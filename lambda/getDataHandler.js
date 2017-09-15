@@ -1,13 +1,12 @@
 'use strict';
 
-const credentials = require('../credentials.json');
 const google = require('googleapis');
 const sheets = google.sheets('v4');
 
 const authClient = new google.auth.JWT(
-  credentials.client_email,
+  process.env.google_client_email,
   null,
-  credentials.private_key,
+  process.env.google_private_key,
   ['https://www.googleapis.com/auth/spreadsheets'],
   null);
 
@@ -17,13 +16,13 @@ module.exports.getData = ({ code }, context, callback) => {
 
     sheets.spreadsheets.values.get({
       spreadsheetId: '1uROhhDLTtt7M1Gb5M60gTg9rgke3rG8UYc-6nqzEdnM',
-      range: 'Sheet!A:E',
+      range: 'Sheet1!A:E',
       access_token: tokens.access_token,
     }, (err, result) => {
       if (err) throw err;
 
       const rows = result.values;
-      const row = rows.find((row) => Integer(row[0]) === Integer(code))
+      const row = rows.find((row) => Number(row[0]) === Number(code))
       if (typeof row === 'undefined') {
         callback(null, {
           status: 'code not found'
