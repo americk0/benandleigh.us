@@ -10,7 +10,10 @@ const authClient = new google.auth.JWT(
   ['https://www.googleapis.com/auth/spreadsheets'],
   null);
 
-module.exports.getData = ({ code }, context, callback) => {
+module.exports.getData = (event, context, callback) => {
+  const { code } = event.pathParameters;
+  console.log(code)
+
   authClient.authorize((err, tokens) => {
     if (err) throw err;
 
@@ -23,12 +26,14 @@ module.exports.getData = ({ code }, context, callback) => {
 
       const rows = result.values;
       const row = rows.find((row) => Number(row[0]) === Number(code))
+      const response = {};
       if (typeof row === 'undefined') {
-        callback(null, {
+        response.body = JSON.stringify({
           status: 'code not found'
         });
+        response.statusCode = 404;
       } else {
-        callback(null, {
+        response.body = JSON.stringify({
           status: 'ok',
           code: row[0],
           name: row[1],
@@ -36,7 +41,9 @@ module.exports.getData = ({ code }, context, callback) => {
           numAttending: row[3],
           message: row[4],
         });
+        response.statusCode = 200;
       }
+      callback(null, response);
     });
   });
 };

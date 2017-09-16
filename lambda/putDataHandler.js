@@ -12,15 +12,19 @@ const authClient = new google.auth.JWT(
   ['https://www.googleapis.com/auth/spreadsheets'],
   null);
 
-module.exports.putData = ({ code, numAttending, message }, context, callback) => {
+module.exports.putData = (event, context, callback) => {
+  const { code, numAttending, message } = JSON.parse(event.body);
+
   try {
-    assert(code.match(/^[0-9]{6}$/), `code "${code}" is not a 6-digit number`);
-    assert(numAttending.match(/^[0-9]+$/), `numAttending "${numAttending}" is not a number`);
+    assert(String(code).match(/^[0-9]{6}$/), `code "${code}" is not a 6-digit number`);
+    assert(String(numAttending).match(/^[0-9]+$/), `numAttending "${numAttending}" is not a number`);
     if (message) assert(typeof message === 'string', `message "${message}" is not a string`);
   } catch (err) {
     return callback(null, {
-      status: "invalid input",
-      error: err,
+      statusCode: 400,
+      body: JSON.stringify({
+        message: err.message,
+      }),
     });
   }
 
@@ -43,19 +47,28 @@ module.exports.putData = ({ code, numAttending, message }, context, callback) =>
       }, -1);
       if (index < 0) {
         return callback(null, {
-          status: `invalid code "${code}"`
+          statusCode: 400,
+          body: JSON.stringify({
+            message: `invalid code "${code}"`,
+          }),
         });
       }
       const row = result.values[index];
 
       if (Number(numAttending) > Number(row[2])) {
         return callback(null, {
-          status: `Error: numAttending "${numAttending}" is greater than numAllowed "${row[2]}"`,
+          statusCode: 400,
+          body: JSON.stringify({
+            message: `Error: numAttending "${numAttending}" is greater than numAllowed "${row[2]}"`,
+          }),
         });
       }
 
       if (row[3]) return callback(null, {
-        status: `Error: already registered as having "${row[3]}" attendees`
+        statusCode: 400,
+        body: JSON.stringify({
+          status: `Error: already registered as having "${row[3]}" attendees`,
+        }),
       });
 
       sheets.spreadsheets.values.update({
@@ -68,7 +81,14 @@ module.exports.putData = ({ code, numAttending, message }, context, callback) =>
           ]
         },
         access_token: tokens.access_token,
-      }, callback);
+      }, (err, result) => {
+        callback(null, {
+          statusCode: 200,
+          body: JSON.stringify({
+            result,
+          }),
+        });
+      });
     });
   });
 };
