@@ -13,10 +13,11 @@ const authClient = new google.auth.JWT(
   null);
 
 module.exports.putData = ({ code, numAttending, message }, context, callback) => {
-  assert(code =~ /[0-9]{6}/, 'code is not a number');
-  assert(code.length === 6, 'invalid code length');
-  assert(numAttending =~ /^[0-9]+$/, 'numAttending is not a number');
-  assert(typeof message === 'string', 'message is not a string');
+  console.log(code)
+  assert(code.match(/^[0-9]{6}$/), `code "${code}" is not a 6-digit number`);
+  assert(numAttending.match(/^[0-9]+$/), `numAttending "${numAttending}" is not a number`);
+  if (message) assert(typeof message === 'string', `message "${message}" is not a string`);
+  console.log(code)
 
   authClient.authorize((err, tokens) => {
     if (err) throw err;
@@ -28,26 +29,32 @@ module.exports.putData = ({ code, numAttending, message }, context, callback) =>
     }, (err, result) => {
       if (err) throw err;
 
-      const index = result.values
-        .map((row) => row.code)
-        .find((rowCode) => rowCode === code);
-      const row = result.values[index];
-
+      const index = result.values.reduce((found, row, index) => {
+        if (Number(row[0]) === Number(code)){
+          return index;
+        } else {
+          return found;
+        }
+      }, -1);
       if (index < 0) {
         return callback(null, {
           status: 'invalid code'
         });
       }
+      const row = result.values[index];
+
+      if (numAttending > row.numAllowed) throw new Error(`numAttending "${numAttending}" is greater than numAllowed "${numAllowed}"`);
 
       sheets.spreadsheets.values.update({
         spreadsheetId,
         valueInputOption: 'RAW',
-        range: `Sheet1:!A${index+1}:E${index+1}`,
+        range: `Sheet1!A${index+1}:E${index+1}`,
         resource: {
           values: [
-            [ code, row[1], numAllowed[2], numAttending, message ]
+            [ code, row[1], row[2], numAttending, message ]
           ]
-        }
+        },
+        access_token: tokens.access_token
       }, (err, result) => {
         if (err) throw err;
         callback(null, result);
