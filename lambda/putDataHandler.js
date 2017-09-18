@@ -87,6 +87,10 @@ module.exports.putData = (event, context, callback) => {
           body: JSON.stringify({
             result,
           }),
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
         });
       });
     });

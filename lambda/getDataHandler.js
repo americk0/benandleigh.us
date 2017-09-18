@@ -26,7 +26,12 @@ module.exports.getData = (event, context, callback) => {
 
       const rows = result.values;
       const row = rows.find((row) => Number(row[0]) === Number(code))
-      const response = {};
+      const response = {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+      };
       if (typeof row === 'undefined') {
         response.body = JSON.stringify({
           status: 'code not found'
