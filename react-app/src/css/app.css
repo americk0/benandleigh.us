@@ -1,0 +1,346 @@
+#hero {
+  width: 100%;
+  background-image: url("../img/hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  height: 100vh;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+#hero img {
+  margin: 0;
+  width: 70%;
+  max-width: 600px;
+  padding: 9% 0 0;
+}
+h1 {
+  font-family: "majesti_bannerheavy", "Playfair Display", serif;
+}
+h3 {
+  font-family: "majesti_bannerheavy", "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 3em;
+  text-align: center;
+}
+h4 {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
+  font-size: .75em;
+  text-align: center;
+  margin-bottom: 2em;
+}
+p {
+  font-family: 'Work Sans', sans-serif;
+  font-size: .85em;
+}
+p a {
+  color: #888;
+  border-bottom: 1px solid #ddd;
+  -webkit-transition: all 150ms ease;
+          transition: all 150ms ease;
+}
+
+p a:hover {
+  color: #87a1af;
+  border-bottom: none;
+}
+.text-center {
+  text-align: center;
+}
+.xl-heading {
+  text-align: center;
+  margin-top: -3.3em;
+}
+.xl-heading h1 {
+  font-size: 6em;
+  font-weight: 900;
+}
+section {
+  margin: 7em 0;
+}
+#intro {
+  margin: 12em 0 14em;
+}
+#intro h1 {
+  font-family: 'majesti_bannermedium';
+}
+#intro h1 em {
+  font-family: 'majesti_bannerbook_italic';
+}
+.barheadline {
+  margin-bottom: 2em;
+}
+.barheadline h4 {
+  display: inline;
+}
+.bar {
+  width: 40px;
+	height: 1px;
+  background-color: black;
+  display: inline-block;
+  margin: 0 4px 3px 0;
+}
+.pushdown img {
+  margin-top: 3.4em;
+}
+#schedule h5, #accomodations h5 {
+  font-family: "majesti_bannerheavy", "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 1.75em;
+}
+#registry img {
+  width: 300px;
+  opacity: .5;
+  padding: 2% 2.5% 0% 0%;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
+}
+#registry img:hover {
+  opacity: .8;
+}
+.rsvpbg {
+  background-image: url("../img/canyon.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#rsvp, #rsvp-form {
+  margin: 0;
+  color: #fff;
+  padding: 10em 0;
+}
+#rsvp h1 {
+  font-size: 5em;
+  color: #fff;
+}
+#rsvp h4 {
+  font-family: 'majesti_bannerbook_italic';
+  letter-spacing: 0px;
+  text-transform: none;
+  font-size: 1.2em;
+}
+#rsvp-form h1 {
+  font-family: 'majesti_bannerbook';
+  font-size: 4em;
+  margin-bottom: 1em;
+}
+#rsvp-form h1 span {
+  font-family: 'majesti_bannerheavy';
+  border-bottom: 1px solid white;
+}
+#rsvp-form h4 {
+  font-family: 'majesti_bannerbook_italic';
+  letter-spacing: 0px;
+  text-transform: none;
+  font-size: 1.2em;
+}
+footer {
+  width: 100%;
+  padding: 3em 0;
+  text-align: center;
+  color: #666;
+	font-size: 80%;
+  font-family: "Poppins", "Avenir", sans-serif;
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	margin: auto;
+	max-width:80%;
+}
+footer img {
+  max-width: 100px;
+}
+/*#stamp{
+	position: fixed;
+	top: 2%;
+  left: 2%;
+}
+#stamp img {
+  width: 90px;
+}*/
+#stamp{
+	position: fixed;
+	top: 50%;
+  left: 2.5%;
+  transform: translateY(-60%);
+}
+#stamp img {
+  width: 80px;
+}
+#sidetext{
+  font-family: "Poppins", "Avenir", sans-serif;
+  font-size: .75em;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	position: fixed;
+	top: 50%;
+	right: -120px;
+	-webkit-transform: rotateZ(90deg);
+	        transform: rotateZ(90deg);
+}
+
+#rsvp .form-wrap {
+  text-align: center;
+  height: auto;
+  /*padding: 10em;*/
+}
+
+.form-wrap h4 {
+  font-size: .8em;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+label {
+  font-size: .8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Poppins", "Avenir", sans-serif;
+  color: #fff;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+input[type=text], textarea {
+  width: 96%;
+  padding: 2%;
+  background-color: #eee;
+  border: 1px dotted white;
+  margin: 1em auto 2em;
+}
+
+input[type=text]#code {
+  text-align: center;
+  font-family: 'majesti_bannerheavy', "Playfair Display", serif;
+  font-size: 2.2em;
+  padding: .1em 0 0;
+}
+
+textarea {
+  min-height: 4em;
+  max-width: 96%;
+}
+
+.response .radio-button {
+  text-transform: none;
+  width: 50%;
+  float: left;
+  margin-bottom: 2em;
+  font-family: "Poppins", "Avenir", sans-serif;
+  color: #fff;
+}
+
+input[type=radio]:not(old){
+  width: 2em;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  opacity: 0;
+}
+
+input[type=radio]:not(old) + label{
+  display: inline-block;
+  margin-left: -2em;
+  line-height: 2.2em;
+}
+
+input[type=radio]:not(old) + label > span{
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  margin: 0.25em 0.5em 0.25em 0.25em;
+  border: 0.0625em solid white;
+  background: transparent;
+  vertical-align: bottom;
+}
+
+input[type=radio]:not(old):checked +  label > span > span{
+  display: block;
+  width: 1.6em;
+  height: 1.6em;
+  margin: 0.125em;
+  border: 0.0625em solid white;
+  background: white;
+}
+
+.button-wrap {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  font-family: "Poppins", "Avenir", sans-serif;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.0);
+  border: 1px solid white;
+  box-shadow: none;
+  padding: 1em 4em .9em;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: .75em;
+  letter-spacing: 3px;
+  -webkit-transition: all 250ms ease;
+          transition: all 250ms ease;
+}
+
+button:hover {
+  background-color: white;
+  color: #369;
+}
+
+/*animations */
+
+.fadeInUp {
+  transform: translateY(15px);
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: .5s;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* media queries */
+/* tablet */
+@media screen and (max-width: 1024px) {
+  #stamp, #sidetext{
+    display: none;
+  }
+}
+
+/* mobile */
+@media screen and (max-width: 640px) {
+  section {
+    margin: 4em 0;
+  }
+  #intro {
+    margin: 7em 0 4em;
+  }
+  .pushdown {
+    margin: 0 0 2em;
+  }
+  .xl-heading{
+    font-size: .5em;
+  }
+  .response .radio-button {
+    width: 100%;
+  }
+}
