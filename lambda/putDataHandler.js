@@ -22,6 +22,10 @@ module.exports.putData = (event, context, callback) => {
   } catch (err) {
     return callback(null, {
       statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify({
         message: err.message,
       }),
@@ -48,6 +52,10 @@ module.exports.putData = (event, context, callback) => {
       if (index < 0) {
         return callback(null, {
           statusCode: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
           body: JSON.stringify({
             message: `invalid code "${code}"`,
           }),
@@ -58,6 +66,10 @@ module.exports.putData = (event, context, callback) => {
       if (Number(numAttending) > Number(row[2])) {
         return callback(null, {
           statusCode: 400,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
           body: JSON.stringify({
             message: `Error: numAttending "${numAttending}" is greater than numAllowed "${row[2]}"`,
           }),
@@ -66,6 +78,10 @@ module.exports.putData = (event, context, callback) => {
 
       if (row[3]) return callback(null, {
         statusCode: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
         body: JSON.stringify({
           status: `Error: already registered as having "${row[3]}" attendees`,
         }),
