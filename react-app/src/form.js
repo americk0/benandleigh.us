@@ -6,6 +6,7 @@ class Form extends React.Component {
     this.state = {
       code: '',
       getResponse: '',
+      putResponse: '',
       validCode: false,
       message: '',
       numAttending: 'none',
@@ -104,32 +105,91 @@ class Form extends React.Component {
   render() {
     if (this.state.validCode) {
       return (
-        <form onSubmit={this.putData}>
-          <p>Hello {this.state.getResponse.name}</p>
-          <p>
-            <input type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending}/>Attending
-            <input type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} />Not Attending
-          </p>
-          {this.state.attending && (
-            <div>
-              How many will be attending?
-              <select value={this.state.numAttending} onChange={this.updateNumAttending}>
-                {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
-              </select>
-            </div>
-          )}
-          <textarea value={this.state.message} onChange={this.updateMessage} />
-          <input type="submit" value="Submit" />
-        </form>
-      )
+        <div className="fullwidth rsvpbg">
+          <div className="grid-container">
+            <section id="rsvp-form">
+              <div className="grid-x grid-padding-x">
+                <div className="large-8 small-12 large-offset-2 cell">
+                  <div className="form-wrap">
+                    <h1 className="text-center">Hi, <span className="name">{this.state.getResponse.name}</span></h1>
+                    <form onSubmit={this.putData}>
+                      <div className="response">
+                        <div className="radio-button">
+                          <input id="radio1" type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending} /><label htmlFor="radio1"><span><span></span></span>Accepts with Pleasure</label>
+                        </div>
+                        <div className="radio-button">
+                          <input id="radio2" type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} /><label htmlFor="radio2"><span><span></span></span>Declines with Regret</label>
+                        </div>
+                      </div>
+                      {this.state.attending && (
+                        <div>
+                          How many will be attending?
+                          <select value={this.state.numAttending} onChange={this.updateNumAttending}>
+                            {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
+                          </select>
+                        </div>
+                      )}
+                      <label htmlFor="message">Your Message / Special Request / Cat Fun Fact</label>
+                      <textarea id="message" value={this.state.message} onChange={this.updateMessage}></textarea>
+                      <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      );
     } else {
       return (
-        <form onSubmit={this.getData}>
-          <p>enter your code: <input type="text" value={this.state.code} onChange={this.updateCode} autoFocus="true" /></p>
-          <input type="submit" name="Submit"/>
-        </form>
+        <div className="fullwidth rsvpbg">
+          <div className="grid-container">
+            <section id="rsvp">
+              <div className="grid-x grid-padding-x">
+                <div className="large-4 small-12 large-offset-4 cell">
+                  <div className="form-wrap">
+                    <h1>RSVP</h1>
+                    <h4>Please enter the 6-digit code from the back of your invitation.</h4>
+                    <form onSubmit={this.getData}>
+                      <input type="text" id="code" value={this.state.code} onChange={this.updateCode} />
+                    </form>
+                    <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
       );
     }
+    // if (this.state.validCode) {
+    //   return (
+    //     <form onSubmit={this.putData}>
+    //       <p>Hello {this.state.getResponse.name}</p>
+    //       <p>
+    //         <input type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending}/>Attending
+    //         <input type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} />Not Attending
+    //       </p>
+    //       {this.state.attending && (
+    //         <div>
+    //           How many will be attending?
+    //           <select value={this.state.numAttending} onChange={this.updateNumAttending}>
+    //             {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
+    //           </select>
+    //         </div>
+    //       )}
+    //       <textarea value={this.state.message} onChange={this.updateMessage} />
+    //       <input type="submit" value="Submit" />
+    //     </form>
+    //   )
+    // } else {
+    //   return (
+    //     <form onSubmit={this.getData}>
+    //       <p>enter your code: <input type="text" value={this.state.code} onChange={this.updateCode} autoFocus="true" /></p>
+    //       <input type="submit" name="Submit"/>
+    //     </form>
+    //   );
+    // }
   }
 }
 
