@@ -1,28 +1,36 @@
 window.onload = function onload() {
-  var element = document.getElementsByClassName('toFadeInUp')[0];
-  console.log(element)
-  var state = {
-    height: element.getBoundingClientRect().top -
-      document.body.getBoundingClientRect().top -
-      screen.height,
-    active: false,
-  };
-  console.log(state)
+  var docElements = document.getElementsByClassName('toFadeInUp');
+  elements = [];
+  states = [];
+  for (var i=0; i<docElements.length; i++) {
+    var element = docElements[i];
+    elements.push(element);
+    states.push({
+      height: element.getBoundingClientRect().top -
+        document.body.getBoundingClientRect().top -
+        screen.height,
+      active: false,
+    });
+  }
 
   window.onscroll = function onscroll() {
-    var active = false;
-    if (window.scrollY >= state.height) {
-      active = true;
-    }
+    for (var i=0; i<elements.length; i++) {
+      var element = elements[i];
+      var state = states[i];
 
-    if (!state.active && active) {
-      console.log('triggered')
-      element.className = element.className.replace('toFadeInUp', '');
-      element.className += ' fadeInUp';
-    } else if (state.active && !active) {
-      element.className = element.className.replace('fadeInUp', '');
-      element.className += ' toFadeInUp';
+      var active = false;
+      if (window.scrollY >= state.height) {
+        active = true;
+      }
+
+      if (!state.active && active) {
+        element.className += ' fadeInUp';
+        element.className = element.className.replace('toFadeInUp', '');
+      } else if (state.active && !active) {
+        element.className += ' toFadeInUp';
+        element.className = element.className.replace('fadeInUp', '');
+      }
+      state.active = active;
     }
-    state.active = active;
   }
 }
