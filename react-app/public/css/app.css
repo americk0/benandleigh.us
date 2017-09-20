@@ -300,6 +300,9 @@ button:hover {
 
 /*animations */
 
+.toFadeInUp {
+  opacity: 0;
+}
 .fadeInUp {
   transform: translateY(15px);
   opacity: 0;
