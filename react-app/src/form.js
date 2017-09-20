@@ -106,7 +106,7 @@ class Form extends React.Component {
     if (this.state.validCode) {
       return (
         <div className="fullwidth rsvpbg">
-          <div className="grid-container">
+          <div className="grid-container fadeInUp">
             <section id="rsvp-form">
               <div className="grid-x grid-padding-x">
                 <div className="large-8 small-12 large-offset-2 cell">
@@ -144,7 +144,7 @@ class Form extends React.Component {
       return (
         <div className="fullwidth rsvpbg">
           <div className="grid-container">
-            <section id="rsvp">
+            <section id="rsvp" className="fadeInUp">
               <div className="grid-x grid-padding-x">
                 <div className="large-4 small-12 large-offset-4 cell">
                   <div className="form-wrap">
@@ -152,8 +152,8 @@ class Form extends React.Component {
                     <h4>Please enter the 6-digit code from the back of your invitation.</h4>
                     <form onSubmit={this.getData}>
                       <input type="text" id="code" value={this.state.code} onChange={this.updateCode} />
+                      <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
                     </form>
-                    <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
                   </div>
                 </div>
               </div>
