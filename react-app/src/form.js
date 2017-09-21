@@ -8,8 +8,11 @@ class Form extends React.Component {
       getResponse: '',
       putResponse: '',
       validCode: false,
+      submitSuccess: false,
       message: '',
       numAttending: 'none',
+      getErrorMessage: null,
+      putErrorMessage: null,
     };
 
     this.updateCode = this.updateCode.bind(this);
@@ -51,12 +54,20 @@ class Form extends React.Component {
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const getResponse = JSON.parse(this.response);
-        self.setState({
-          getResponse,
-          validCode: true,
-        });
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          const getResponse = JSON.parse(this.response);
+          self.setState({
+            getResponse,
+            validCode: true,
+          });
+        } else if (this.status === 404) {
+          self.setState({
+            getResponse: '',
+            validCode: false,
+            getErrorMessage: 'Invalid Code',
+          });
+        }
       }
     };
     xhttp.open('GET', 'https://0zf2icy391.execute-api.us-east-1.amazonaws.com/dev/data/' + this.state.code, true);
@@ -75,12 +86,20 @@ class Form extends React.Component {
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const putResponse = JSON.parse(this.response);
-
-        self.setState({
-          putResponse,
-        });
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          const putResponse = JSON.parse(this.response);
+          self.setState({
+            putResponse,
+            submitSuccess: true,
+          });
+        } else if (this.status === 400) {
+          self.setState({
+            putResponse: '',
+            submitSuccess: false,
+            putErrorMessage: 'Invalid Submission (Check that all fields are filled)'
+          });
+        }
       }
     };
     xhttp.open('PUT', 'https://0zf2icy391.execute-api.us-east-1.amazonaws.com/dev/data', true);
@@ -103,7 +122,17 @@ class Form extends React.Component {
   }
 
   render() {
-    if (this.state.validCode) {
+    if (this.state.submitSuccess) {
+      return (
+        <div className="fullwidth rsvpbg">
+          <div className="grid-container">
+            <section id="thankyou" className="fadeInUp">
+              <h1 className="text-center">Thank You!</h1>
+            </section>
+          </div>
+        </div>
+      );
+    } else if (this.state.validCode) {
       return (
         <div className="fullwidth rsvpbg">
           <div className="grid-container fadeInUp">
@@ -115,7 +144,7 @@ class Form extends React.Component {
                     <form onSubmit={this.putData}>
                       <div className="response">
                         <div className="radio-button">
-                          <input id="radio1" type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending} /><label htmlFor="radio1"><span><span></span></span>Accepts with Pleasure</label>
+                          <input id="radio1" type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending} required/><label htmlFor="radio1"><span><span></span></span>Accepts with Pleasure</label>
                         </div>
                         <div className="radio-button">
                           <input id="radio2" type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} /><label htmlFor="radio2"><span><span></span></span>Declines with Regret</label>
@@ -131,6 +160,9 @@ class Form extends React.Component {
                       )}
                       <label htmlFor="message">Your Message / Special Request / Cat Fun Fact</label>
                       <textarea id="message" value={this.state.message} onChange={this.updateMessage}></textarea>
+                      {this.state.putErrorMessage && (
+                        <div className="error-message text-center">{this.state.putErrorMessage}</div>
+                      )}
                       <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
                     </form>
                   </div>
@@ -152,6 +184,9 @@ class Form extends React.Component {
                     <h4>Please enter the 6-digit code from the back of your invitation.</h4>
                     <form onSubmit={this.getData}>
                       <input type="text" id="code" value={this.state.code} onChange={this.updateCode} />
+                      {this.state.getErrorMessage && (
+                        <div className="error-message text-center">{this.state.getErrorMessage}</div>
+                      )}
                       <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
                     </form>
                   </div>

@@ -109,7 +109,7 @@ section {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-#rsvp, #rsvp-form {
+#rsvp, #rsvp-form, #thankyou {
   margin: 0;
   color: #fff;
   padding: 10em 0;
@@ -138,6 +138,10 @@ section {
   letter-spacing: 0px;
   text-transform: none;
   font-size: 1.2em;
+}
+.error-message {
+  color: #ff7a7a;
+  font-weight: bold;
 }
 footer {
   width: 100%;
@@ -331,6 +335,9 @@ button:hover {
 
 /* mobile */
 @media screen and (max-width: 640px) {
+  #hero {
+    background-attachment: scroll;
+  }
   section {
     margin: 4em 0;
   }

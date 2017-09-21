@@ -17,6 +17,14 @@
     <script src="js/vendor/jquery.min.js"></script>
     <script src="assets/owlcarousel/owl.carousel.js"></script>
     <script src="js/scrolltrigger.js"></script>
+    <script src="js/vendor/smoothscroll.js"></script>
+    <script>
+      function scrollToRSVP() {
+        document.querySelector('#rsvp').scrollIntoView({
+          behavior: 'smooth',
+        });
+      }
+    </script>
 
     <!--
       manifest.json provides metadata used when your web app is added to the
@@ -112,8 +120,8 @@ Two Thousand Seventeen<br>
             <div class="large-4 cell text-center">
                 <h4>Venue</h4>
                 <h5>The Chimneys at Big Canoe</h5>
-                <p>710 Transit Ave<br />
-                   Canton, GA 30114</p>
+                <p>36 Wolfscratch Village Circle<br />
+                   Jasper, GA 30143</p>
             </div>
             <div class="large-4 cell text-center">
                 <h4>Schedule</h4>
@@ -214,7 +222,7 @@ Two Thousand Seventeen<br>
       </div>
     </div>-->
     <div>
-      <div id="root"></div>      
+      <div id="root"></div>
     </div>
     <!--
       This HTML file is a template.
@@ -234,5 +242,6 @@ Two Thousand Seventeen<br>
     <div id="stamp"><img src="img/stamp.svg" alt="logo" /></div>
     <div id="sidetext">34°27'22.8"N <div class="bar"></div> 84°17'22.3"W</div>
 
+    <nav><a onclick="scrollToRSVP()" style="position: fixed; top:0; left: 0;">RSVP</a></nav>
   </body>
 </html>
