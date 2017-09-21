@@ -113,10 +113,10 @@ class Form extends React.Component {
 
   renderAttendingDropDown(numAllowed) {
     const options = [
-      <option key="none" value="none">-</option>
+      <option key="none" value="none" style={{color: 'black'}}>-</option>
     ];
     for (let i=0; i<numAllowed; i++) {
-      options.push(<option key={i} value={i+1}>{i+1}</option>);
+      options.push(<option key={i} value={i+1} style={{color: 'black'}}>{i+1}</option>);
     }
     return options;
   }
@@ -151,9 +151,9 @@ class Form extends React.Component {
                         </div>
                       </div>
                       {this.state.attending && (
-                        <div>
-                          How many will be attending?
-                          <select value={this.state.numAttending} onChange={this.updateNumAttending}>
+                        <div className="numberattending">
+                          <label htmlFor="numberattending">How many will be attending?</label>
+                          <select value={this.state.numAttending} onChange={this.updateNumAttending} id="numberattending">
                             {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
                           </select>
                         </div>

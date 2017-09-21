@@ -140,8 +140,13 @@ section {
   font-size: 1.2em;
 }
 .error-message {
+  font-size: .8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Poppins", "Avenir", sans-serif;
   color: #ff7a7a;
-  font-weight: bold;
+  margin-bottom: 1em;
 }
 footer {
   width: 100%;
@@ -158,23 +163,6 @@ footer {
 }
 footer img {
   max-width: 100px;
-}
-/*#stamp{
-	position: fixed;
-	top: 2%;
-  left: 2%;
-}
-#stamp img {
-  width: 90px;
-}*/
-#stamp{
-	position: fixed;
-	top: 50%;
-  left: 2.5%;
-  transform: translateY(-60%);
-}
-#stamp img {
-  width: 80px;
 }
 #sidetext{
   font-family: "Poppins", "Avenir", sans-serif;
@@ -232,6 +220,37 @@ input[type=text]#code {
 textarea {
   min-height: 4em;
   max-width: 96%;
+}
+
+select {
+  border: 1px solid #fff;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  background-color: rgba(255,255,255,0);
+  font-size: 16px;
+  height: 34px;
+  width: 96%;
+  margin: 1em 0;
+  padding: .2em 1em;
+  color: #fff;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.numberattending {
+  margin: 1.75em 0;
+}
+
+nav{
+	position: fixed;
+	top: 2%;
+  left: 2.5%;
+}
+nav a {
+  font-family: 'majesti_bannerheavy';
+  font-size: 1.75em;
+  color: #000;
+  border-bottom: 1px solid #000;
 }
 
 .response .radio-button {
@@ -328,7 +347,7 @@ button:hover {
 /* media queries */
 /* tablet */
 @media screen and (max-width: 1024px) {
-  #stamp, #sidetext{
+  #sidetext, nav {
     display: none;
   }
 }
