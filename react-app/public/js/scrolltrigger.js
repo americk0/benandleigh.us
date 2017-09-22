@@ -1,4 +1,4 @@
-window.onload = function onload() {
+window.addEventListener('load', function onload() {
   var docElements = document.getElementsByClassName('toFadeInUp');
   elements = [];
   states = [];
@@ -13,7 +13,7 @@ window.onload = function onload() {
     });
   }
 
-  window.onscroll = function onscroll() {
+  window.addEventListener('scroll', function onscroll() {
     for (var i=0; i<elements.length; i++) {
       var element = elements[i];
       var state = states[i];
@@ -32,5 +32,5 @@ window.onload = function onload() {
       }
       state.active = active;
     }
-  }
-}
+  });
+});
