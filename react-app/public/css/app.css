@@ -354,7 +354,7 @@ button:hover {
 
 /* mobile */
 @media screen and (max-width: 640px) {
-  #hero {
+  #hero, .rsvpbg {
     background-attachment: scroll;
   }
   section {
