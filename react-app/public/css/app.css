@@ -4,7 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   height: 100vh;
   text-align: center;
   margin: 0;
@@ -107,7 +107,7 @@ section {
   background-image: url("../img/canyon.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
 }
 #rsvp, #rsvp-form, #thankyou {
   margin: 0;
