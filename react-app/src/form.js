@@ -124,76 +124,70 @@ class Form extends React.Component {
   render() {
     if (this.state.submitSuccess) {
       return (
-        <div className="fullwidth rsvpbg">
-          <div className="grid-container">
-            <section id="thankyou" className="fadeInUp">
-              <h1 className="text-center">Thank You!</h1>
-            </section>
-          </div>
+        <div className="grid-container">
+          <section id="thankyou" className="fadeInUp">
+            <h1 className="text-center">Thank You!</h1>
+          </section>
         </div>
       );
     } else if (this.state.validCode) {
       return (
-        <div className="fullwidth rsvpbg">
-          <div className="grid-container fadeInUp">
-            <section id="rsvp-form">
-              <div className="grid-x grid-padding-x">
-                <div className="large-8 small-12 large-offset-2 cell">
-                  <div className="form-wrap">
-                    <h1 className="text-center">Hi, <span className="name">{this.state.getResponse.name}</span></h1>
-                    <form onSubmit={this.putData}>
-                      <div className="response">
-                        <div className="radio-button">
-                          <input id="radio1" type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending} required/><label htmlFor="radio1"><span><span></span></span>Accepts with Pleasure</label>
-                        </div>
-                        <div className="radio-button">
-                          <input id="radio2" type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} /><label htmlFor="radio2"><span><span></span></span>Declines with Regret</label>
-                        </div>
+        <div className="grid-container fadeInUp">
+          <section id="rsvp-form">
+            <div className="grid-x grid-padding-x">
+              <div className="large-8 small-12 large-offset-2 cell">
+                <div className="form-wrap">
+                  <h1 className="text-center">Hi, <span className="name">{this.state.getResponse.name}</span></h1>
+                  <form onSubmit={this.putData}>
+                    <div className="response">
+                      <div className="radio-button">
+                        <input id="radio1" type="radio" value="attending" checked={this.state.attending === true} onClick={this.updateAttending} required/><label htmlFor="radio1"><span><span></span></span>Accepts with Pleasure</label>
                       </div>
-                      {this.state.attending && (
-                        <div className="numberattending">
-                          <label htmlFor="numberattending">How many will be attending?</label>
-                          <select value={this.state.numAttending} onChange={this.updateNumAttending} id="numberattending">
-                            {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
-                          </select>
-                        </div>
-                      )}
-                      <label htmlFor="message">Your Message / Special Request / Cat Fun Fact</label>
-                      <textarea id="message" value={this.state.message} onChange={this.updateMessage}></textarea>
-                      {this.state.putErrorMessage && (
-                        <div className="error-message text-center">{this.state.putErrorMessage}</div>
-                      )}
-                      <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
-                    </form>
-                  </div>
+                      <div className="radio-button">
+                        <input id="radio2" type="radio" value="notAttending" checked={this.state.attending === false} onClick={this.updateAttending} /><label htmlFor="radio2"><span><span></span></span>Declines with Regret</label>
+                      </div>
+                    </div>
+                    {this.state.attending && (
+                      <div className="numberattending">
+                        <label htmlFor="numberattending">How many will be attending?</label>
+                        <select value={this.state.numAttending} onChange={this.updateNumAttending} id="numberattending">
+                          {this.renderAttendingDropDown(this.state.getResponse.numAllowed)}
+                        </select>
+                      </div>
+                    )}
+                    <label htmlFor="message">Your Message / Special Request / Cat Fun Fact</label>
+                    <textarea id="message" value={this.state.message} onChange={this.updateMessage}></textarea>
+                    {this.state.putErrorMessage && (
+                      <div className="error-message text-center">{this.state.putErrorMessage}</div>
+                    )}
+                    <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
+                  </form>
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       );
     } else {
       return (
-        <div className="fullwidth rsvpbg">
-          <div className="grid-container">
-            <section id="rsvp" className="fadeInUp">
-              <div className="grid-x grid-padding-x">
-                <div className="large-4 small-12 large-offset-4 cell">
-                  <div className="form-wrap">
-                    <h1>RSVP</h1>
-                    <h4>Please enter the 6-digit code from the back of your invitation.</h4>
-                    <form onSubmit={this.getData}>
-                      <input type="text" id="code" value={this.state.code} onChange={this.updateCode} />
-                      {this.state.getErrorMessage && (
-                        <div className="error-message text-center">{this.state.getErrorMessage}</div>
-                      )}
-                      <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
-                    </form>
-                  </div>
+        <div className="grid-container">
+          <section id="rsvp" className="fadeInUp">
+            <div className="grid-x grid-padding-x">
+              <div className="large-4 small-12 large-offset-4 cell">
+                <div className="form-wrap">
+                  <h1>RSVP</h1>
+                  <h4>Please enter the 6-digit code from the back of your invitation.</h4>
+                  <form onSubmit={this.getData}>
+                    <input type="text" id="code" value={this.state.code} onChange={this.updateCode} />
+                    {this.state.getErrorMessage && (
+                      <div className="error-message text-center">{this.state.getErrorMessage}</div>
+                    )}
+                    <div className="button-wrap"><button type="submit" value="Submit">Submit</button></div>
+                  </form>
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       );
     }
