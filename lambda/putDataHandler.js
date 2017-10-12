@@ -98,6 +98,7 @@ module.exports.putData = (event, context, callback) => {
         },
         access_token: tokens.access_token,
       }, (err, result) => {
+        delete result.spreadsheetId;
         callback(null, {
           statusCode: 200,
           body: JSON.stringify({
