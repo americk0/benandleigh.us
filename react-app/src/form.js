@@ -94,11 +94,20 @@ class Form extends React.Component {
             submitSuccess: true,
           });
         } else if (this.status === 400) {
-          self.setState({
-            putResponse: '',
-            submitSuccess: false,
-            putErrorMessage: 'Invalid Submission (Check that all fields are filled)'
-          });
+          const putResponse = JSON.parse(this.response);
+          if (putResponse && putResponse.status && putResponse.status.match(/^Error: already registered/)) {
+            self.setState({
+              putResponse: putResponse,
+              submitSuccess: false,
+              putErrorMessage: 'You have already registered. Please contact us if you need to make changes'
+            });
+          } else {
+            self.setState({
+              putResponse: putResponse,
+              submitSuccess: false,
+              putErrorMessage: 'Invalid Submission (Check that all fields are filled)'
+            });
+          }
         }
       }
     };
